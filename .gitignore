@@ -1,0 +1,8 @@
+binCpp
+tmp
+_pycache/pycache
+db.sqlite3
+.venv
+sdk/setup/*
+media
+staticfiles
