@@ -10,9 +10,12 @@ DPFJ_FMD_DP_PRE_REG_FEATURES = 0  # Example value
 DPFJ_E_MORE_DATA = 96075789  # Example value
 THRESHOLD_RATE = 0.5
 
-# Load the library (update path if needed)
+#Load the library (update path if needed)
 dpfj_lib = ctypes.CDLL("/usr/lib64/libdpfj.so")
 dpfjdd_lib = ctypes.CDLL("/usr/lib64/libdpfpdd.so")
+
+# dpfj_lib = ctypes.CDLL("dpfj.dll")
+# dpfjdd_lib = ctypes.CDLL("dpfpdd.dll")
 
 # Function to read a file as bytes
 def read_file(file_path):
@@ -35,6 +38,10 @@ def handle_generate_finger_print_template(size2):
 
 def handle_create_enrollement(data2, size2):
     result = dpfj_lib.dpfj_create_enrollment_fmd(data2, ctypes.byref(size2))
+    return result
+
+def handle_finish_enrollement():
+    result = dpfj_lib.dpfj_finish_enrollment()
     return result
 
 def handle_verification(data1, size1, data2, size2,falsematch_rate):
